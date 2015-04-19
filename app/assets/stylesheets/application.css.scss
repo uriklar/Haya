@@ -22,8 +22,11 @@ $font-color: #A87C4F;
 body {
 	background-color: black;	
 	direction: rtl;
-	color: $font-color;
+	//color: $font-color;
 	font-family: 'Alef', sans-serif;
+	background-image: url('background.jpg');
+	background-size: cover;
+	background-repeat: no-repat;
 }
 
 .container {
