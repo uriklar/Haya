@@ -1,0 +1,129 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ * require_self
+ * require_tree .
+ */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import url(http://fonts.googleapis.com/css?family=Alef:400,700);
+@import "pgwslideshow.min";
+
+$font-color: #A87C4F;
+
+body {
+	background-color: black;	
+	direction: rtl;
+	color: $font-color;
+	font-family: 'Alef', sans-serif;
+}
+
+.container {
+	width: 980px;
+	margin-top: 40px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	background-color: white;
+	border-radius: 4px;
+}
+
+header {
+	position: relative;
+	height: 371px;
+	background-image: url('haya_sea.png');
+	background-size: cover;
+	background-repeat: no-repat;
+
+	.header-title {
+		position: absolute;
+		padding: 10px 20px;
+		right: 40px;
+		bottom: 0px;
+		background-color: white;
+		text-align: center;
+
+		.name {
+			font-size: 44px;
+			line-height: 48px;
+		}
+
+		.years {
+			font-size: 30px;
+			line-height: 34px;
+		}
+	}
+}
+
+.row-same-height {
+  display: table;
+  width: 100%;
+  /* fix overflow */
+  table-layout: fixed;
+}
+.col-xs-height {
+  display: table-cell;
+  float: none !important;
+}
+
+
+// Home
+	#bio-container {
+		margin-top: 20px;
+	}
+
+	#quick-info {
+		border-left: 2px solid $font-color;
+		padding-left: 25px;
+		padding-right: 25px;
+		ul {
+			-webkit-padding-start: 15px;
+			list-style-type: circle;
+		}
+
+		.button {
+			background-color: $font-color;
+			height: 45px;
+			line-height: 45px;
+			text-align: center;
+			color: white;
+			margin: 10px 0;
+			cursor: pointer;
+
+		}
+	}
+
+	#long-info {
+		padding-left: 25px;
+		padding-right: 25px;
+	}
+
+	// Carousel
+	.ps-caption {
+		text-align: right !important;
+	}
+
+
+// Modal
+	.modal {
+		.close {
+			float: left;
+		}
+	}
+
+// Stories
+	.panel-heading {
+		background-color: $font-color !important;
+		color: #fff !important;
+	}
+
+	.panel-body {
+		color: #000 !important;
+	}

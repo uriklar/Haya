@@ -1,0 +1,152 @@
+<div class="container">
+	<%= render "layouts/header" %>
+	<div class="row" id="bio-container">
+		<div class="row-same-height">
+			<div class="col-xs-4 col-xs-height" id="quick-info">
+				<div class="name">חיה וינר</div>
+				<ul>
+					<li>נולדה בשנת 1912 בשקר כלשהוא ליטא</li>
+					<li>אם לשלושה, סבתא ל-8, סבתא רבה ל-12</li>
+					<li>עזבה אותנו בתאריך בלה בלה</li>
+				</ul>
+
+				<div class="button" data-toggle="modal" data-target="#photoModal">שתף תמונה</div>
+
+				<div class="button" data-toggle="modal" data-target="#storyModal">שתף סיפור</div>
+			</div>
+			<div class="col-xs-8 col-xs-height" id="long-info">
+				<p>
+					לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית קולהע צופעט למרקוח איבן איף, ברומץ כלרשט מיחוצים. קלאצי ושבעגט ליבם סולגק. בראיט ולחת צורק מונחף, בגורמי מגמש. תרבנך וסתעד לכנו סתשם השמה - לתכי מורגם בורק? לתיג ישבעס.
+				</p>
+
+				<p>
+					לפרומי בלוף קינץ תתיח לרעח. לת צשחמי צש בליא, מנסוטו צמלח לביקו ננבי, צמוקו בלוקריה שיצמה ברורק. נולום ארווס סאפיאן - פוסיליס קוויס, אקווזמן סחטיר בלובק. תצטנפל בלינדו למרקל אס לכימפו, דול, צוט ומעיוט - לפתיעם ברשג - ולתיעם גדדיש. קוויז דומור ליאמום בלינך רוגצה. לפמעט מוסן מנת. קונדימנטום קורוס בליקרה, נונסטי קלובר בריקנה סטום, לפריקך תצטריק לרטי. 
+				</p>
+
+				<p>
+					גולר מונפרר סוברט לורם שבצק יהול, לכנוץ בעריר גק ליץ, מוסן מנת. להאמית קרהשק סכעיט דז מא, מנכם למטכין נשואי מנורך. קולורס מונפרד אדנדום סילקוף, מרגשי ומרגשח. עמחליף קולהע צופעט למרקוח איבן איף, ברומץ כלרשט מיחוצים. קלאצי ליבם סולגק. בראיט ולחת צורק מונחף, בגורמי מגמש. תרבנך וסתעד לכנו סתשם השמה - לתכי מורגם בורק? לתיג ישבעס.	
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Phot gallery container -->
+<div class="container">
+	<ul class="pgwSlideshow">
+		<!-- <img src="san-francisco.jpg" alt="San Francisco, USA" data-description="Golden Gate Bridge"> -->
+		<% @photos.each do |p| %>
+	    <li><%= image_tag p.image, alt: p.title || "", :data => { :description => p.description || "" } %></li>
+	  <% end %>
+	</ul>
+</div>
+
+
+<!-- Stories container -->
+<div class="container">
+	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+		<% @stories.each_with_index do |s,i| %>
+
+		  <div class="panel panel-default story">
+		    <div class="panel-heading" role="tab" id="heading_<%= i %>">
+		      <h4 class="panel-title">
+		        <a data-toggle="collapse" data-parent="#accordion" href="#collapse_<%= i %>" aria-expanded="false" aria-controls="collapse_<%= i %>">
+		         <span class="from"><%= s.from %></span>, <span class="relativity"><%= s.relativity %></span>
+		        </a>
+		      </h4>
+		    </div>
+		    <div id="collapse_<%= i %>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading_<%= i %>">
+		      <div class="panel-body">
+		        <%= simple_format(s.body) %>
+		      </div>
+		    </div>
+		  </div>
+	  <% end %>
+  </div>
+</div>
+
+
+
+
+<!-- New Photo Modal -->
+<div class="modal fade" id="photoModal">
+	<%= form_for @photo, :url => photos_path, :html => { :multipart => true } do |form| %>
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title">שתף תמונה</h4>
+	      </div>
+	      <div class="modal-body">
+	        <div class="form-group">
+				    <label for="photo_image">העלה תמונה</label>
+				    <%= form.file_field :image %>
+				    <p class="help-block">* בחר תמונה מהמחשב שלך</p>
+				  </div>
+				  
+				  <div class="form-group">
+				    <label for="photo_title">כותרת</label>
+				    <%= form.text_field :title, class: "form-control", placeholder: "אני וחיה בקיבוץ" %>
+				  </div>
+
+				  <div class="form-group">
+				    <label for="photo_description">תיאור</label>
+				    <%= form.text_area :description, class: "form-control", rows: 3, placeholder: "צולם בשנת 2003 ביום ההולדת של אבא" %>
+				  </div>
+				 
+				  
+				
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <%= form.submit "Submit", class: "btn-primary" %>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+  <% end %>
+</div><!-- /.modal -->
+
+
+<!-- New Story Modal -->
+<div class="modal fade" id="storyModal">
+	<%= form_for @story, :url => stories_path do |form| %>
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title">שתף סיפור</h4>
+	      </div>
+	      <div class="modal-body">
+				  
+				  <div class="form-group">
+				    <label for="story_from">שם</label>
+				    <%= form.text_field :from, class: "form-control", placeholder: "שם" %>
+				  </div>
+
+				  <div class="form-group">
+				    <label for="story_relativity">קרבה</label>
+				    <%= form.text_field :relativity, class: "form-control", placeholder: "קרבה" %>
+				  </div>
+
+				  <div class="form-group">
+				    <label for="story_body">סיפור</label>
+				    <%= form.text_area :body, class: "form-control", rows: 8, placeholder: "הכנס כאן את סיפורך על חיה..." %>
+				  </div>
+				 
+				  
+				
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <%= form.submit "Submit", class: "btn-primary" %>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+  <% end %>
+</div><!-- /.modal -->
+
+
+
+
+
+
