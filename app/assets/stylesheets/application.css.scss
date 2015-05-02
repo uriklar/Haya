@@ -43,9 +43,11 @@ body {
 header {
 	position: relative;
 	height: 371px;
-	background-image: url('haya_sea.png');
-	background-size: cover;
-	background-repeat: no-repat;
+	background: url('haya_sea.png') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 
 	.header-title {
 		position: absolute;
