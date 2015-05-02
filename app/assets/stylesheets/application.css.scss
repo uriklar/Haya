@@ -24,9 +24,11 @@ body {
 	direction: rtl;
 	//color: $font-color;
 	font-family: 'Alef', sans-serif;
-	background-image: url('background.jpg');
-	background-size: cover;
-	background-repeat: no-repat;
+	background: url('background.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .container {
